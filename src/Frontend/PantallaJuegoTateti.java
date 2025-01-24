@@ -107,11 +107,11 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
         );
 
         pack();
@@ -195,7 +195,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         do {
             int botonAleatorio = r.nextInt(9); // Elegir boton random simulando maquina
             if (buttons[botonAleatorio].getText().equals("") || contTurnos >= 5) {
-                buttons[botonAleatorio].setText("0");
+                buttons[botonAleatorio].setText("O");
                 buttons[botonAleatorio].setEnabled(false);
                 flag = true;
             } 
@@ -205,30 +205,40 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
     
     private void verficarEmpateVictoria() {
         // Comprueba cuando el texto es X:
-        // Horizontales
-        patronGanador(0, 1, 2);
-        patronGanador(3, 4, 5);
-        patronGanador(6, 7, 8);
+        verificar("X", Color.green);
+        // Comprueba cuando el texto es :
+        verificar("O", Color.red);
+    }
+    
+    private void verificar(String symbol, Color background) {
+        patronGanador(0, 1, 2, symbol, background);
+        patronGanador(3, 4, 5, symbol, background);
+        patronGanador(6, 7, 8, symbol, background);
         
         // Diagonales
-        patronGanador(0, 4, 8);
-        patronGanador(2, 4, 6);
+        patronGanador(0, 4, 8, symbol, background);
+        patronGanador(1, 4, 6, symbol, background);
         
         // Verticales
-        patronGanador(0, 3, 6);
-        patronGanador(1, 4, 7);
-        patronGanador(2, 5, 8);
+        patronGanador(0, 3, 6, symbol, background);
+        patronGanador(1, 4, 7, symbol, background);
+        patronGanador(2, 5, 8, symbol, background);
     }
     
-    private void patronGanador(int btn1, int btn2, int btn3) {
-        if(buttons[btn1].getText().equals("X") && buttons[btn2].getText().equals("X") && buttons[btn3].getText().equals("X")) {
-            buttons[btn1].setBackground(Color.green);
-            buttons[btn2].setBackground(Color.green);
-            buttons[btn3].setBackground(Color.green);
+    private void patronGanador(int btn1, int btn2, int btn3, String s, Color b) {
+        if(buttons[btn1].getText().equals(s) && buttons[btn2].getText().equals(s) && buttons[btn3].getText().equals(s)) {
+            buttons[btn1].setBackground(b);
+            buttons[btn2].setBackground(b);
+            buttons[btn3].setBackground(b);
             desactivarBotones();
-        }
+            this.dispose();
+            PantallaFinJuego pfj = new PantallaFinJuego(1);
+            pfj.setVisible(true);
+            pfj.setLocationRelativeTo(null);
+        }       
     }
     
+   
     private void desactivarBotones() {
         for (JButton btn : buttons) {
             btn.setEnabled(false);
