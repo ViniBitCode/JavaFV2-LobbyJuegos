@@ -1,0 +1,4 @@
+En este archivo dejo por sento lo que debo corregir:
+. contemplar caso de empate en el tateti
+. boton para volver atrás en la 2da interfaz
+. comenzar con el buscaminas
