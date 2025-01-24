@@ -13,10 +13,13 @@ import javax.swing.JFrame;
 public class PantallaFinJuego extends javax.swing.JFrame {
 
     int opcJuego;
+    JFrame frameHeredado;
     
-    public PantallaFinJuego(int opcJuego) {
+    public PantallaFinJuego(int opcJuego, JFrame frameHeredado) {
         initComponents();
         this.opcJuego = opcJuego;
+        this.frameHeredado = frameHeredado;
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -109,6 +112,7 @@ public class PantallaFinJuego extends javax.swing.JFrame {
             
         }
         this.dispose();
+        frameHeredado.dispose();
     }//GEN-LAST:event_btnRepeatActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

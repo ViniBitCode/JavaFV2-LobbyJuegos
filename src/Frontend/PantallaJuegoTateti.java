@@ -119,8 +119,8 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
 
     private void iniciarVariables() {
         buttons[0] = btn00;
-        buttons[1] = btn02;
-        buttons[2] = btn01;
+        buttons[1] = btn01;
+        buttons[2] = btn02;
         buttons[3] = btn10;
         buttons[4] = btn11;
         buttons[5] = btn12;
@@ -148,13 +148,13 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
 
     // Arreglar error -> posicion mal del boton 
     private void btn01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn01ActionPerformed
-        buttons[2].setEnabled(false);
-        ponerIconoSegunTurno(buttons[2]);
+        buttons[1].setEnabled(false);
+        ponerIconoSegunTurno(buttons[1]);
     }//GEN-LAST:event_btn01ActionPerformed
 
     private void btn02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn02ActionPerformed
-        buttons[1].setEnabled(false);
-        ponerIconoSegunTurno(buttons[1]);
+        buttons[2].setEnabled(false);
+        ponerIconoSegunTurno(buttons[2]);
     }//GEN-LAST:event_btn02ActionPerformed
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
@@ -217,7 +217,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         
         // Diagonales
         patronGanador(0, 4, 8, symbol, background);
-        patronGanador(1, 4, 6, symbol, background);
+        patronGanador(2, 4, 6, symbol, background);
         
         // Verticales
         patronGanador(0, 3, 6, symbol, background);
@@ -231,8 +231,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
             buttons[btn2].setBackground(b);
             buttons[btn3].setBackground(b);
             desactivarBotones();
-            this.dispose();
-            PantallaFinJuego pfj = new PantallaFinJuego(1);
+            PantallaFinJuego pfj = new PantallaFinJuego(1, this);
             pfj.setVisible(true);
             pfj.setLocationRelativeTo(null);
         }       
