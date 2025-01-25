@@ -4,6 +4,7 @@
  */
 package Frontend;
 
+import static Utils.Utils.crearPantallaFinJuego;
 import java.awt.Color;
 import java.util.Random;
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
     private JButton buttons[] = new JButton[9];
     private Random r = new Random();
     private int contTurnos = 0;
+    private boolean partidaGanada = false;
+    private boolean partidaEmpatada = false;
 
     public PantallaJuegoTateti() {
         initComponents();
@@ -134,10 +137,10 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         int primerTurno = r.nextInt(10) + 1;
         if (primerTurno % 2 == 0) {
             // Empieza la maquina
-            
+
         } else {
             // Empieza la persona
-           
+
         }
     }
 
@@ -188,56 +191,78 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void ponerIconoSegunTurno(JButton btn) {
-        btn.setText("X");
-        boolean flag = false;
         contTurnos++;
-        System.out.println(contTurnos);
+
+        btn.setText("X");
+        // Primero se verifica si la persona gana la partida
+        verificarVictoria("X", Color.green);
+
+        // Este segmento se encarga de no empatar la partida si la persona gana en su último turno
+        if (partidaGanada == false) {
+            verificarEmpate();
+        }
+
+        // Si no se empata ni se gana todavía, la máquina seguira jugando
+        if (partidaGanada == false && partidaEmpatada == false) {
+            maquinaJuega();
+            verificarVictoria("O", Color.red);
+        }
+
+    }
+
+    // Busca un boton libre al cula ponerle la "O"
+    private void maquinaJuega() {
+        boolean flag = false;
         do {
             int botonAleatorio = r.nextInt(9); // Elegir boton random simulando maquina
             if (buttons[botonAleatorio].getText().equals("") || contTurnos >= 5) {
                 buttons[botonAleatorio].setText("O");
                 buttons[botonAleatorio].setEnabled(false);
                 flag = true;
-            } 
+            }
         } while (!flag);
-        verficarEmpateVictoria();
     }
-    
-    private void verficarEmpateVictoria() {
-        // Comprueba cuando el texto es X:
-        verificar("X", Color.green);
-        // Comprueba cuando el texto es :
-        verificar("O", Color.red);
+
+    private void verificarEmpate() {
+        if (contTurnos == 5) {
+            for (JButton button : buttons) {
+                button.setBackground(Color.yellow);
+            }
+            partidaEmpatada = true;
+            crearPantallaFinJuego(this);
+        }
     }
-    
-    private void verificar(String symbol, Color background) {
+
+    private void verificarVictoria(String symbol, Color background) {
+        // Horizontales
         patronGanador(0, 1, 2, symbol, background);
         patronGanador(3, 4, 5, symbol, background);
         patronGanador(6, 7, 8, symbol, background);
-        
+
         // Diagonales
         patronGanador(0, 4, 8, symbol, background);
         patronGanador(2, 4, 6, symbol, background);
-        
+
         // Verticales
         patronGanador(0, 3, 6, symbol, background);
         patronGanador(1, 4, 7, symbol, background);
         patronGanador(2, 5, 8, symbol, background);
     }
-    
+
     private void patronGanador(int btn1, int btn2, int btn3, String s, Color b) {
-        if(buttons[btn1].getText().equals(s) && buttons[btn2].getText().equals(s) && buttons[btn3].getText().equals(s)) {
+        if (buttons[btn1].getText().equals(s) && buttons[btn2].getText().equals(s) && buttons[btn3].getText().equals(s)) {
             buttons[btn1].setBackground(b);
             buttons[btn2].setBackground(b);
             buttons[btn3].setBackground(b);
+
+            // Este bool me define si alguno de los 2 jugadores gana la partida
+            partidaGanada = true;
             desactivarBotones();
-            PantallaFinJuego pfj = new PantallaFinJuego(1, this);
-            pfj.setVisible(true);
-            pfj.setLocationRelativeTo(null);
-        }       
+
+            crearPantallaFinJuego(this);
+        }
     }
-    
-   
+
     private void desactivarBotones() {
         for (JButton btn : buttons) {
             btn.setEnabled(false);

@@ -109,7 +109,6 @@ public class PantallaFinJuego extends javax.swing.JFrame {
                 pjt.setVisible(true);
                 pjt.setLocationRelativeTo(null);
                 break;
-            
         }
         this.dispose();
         frameHeredado.dispose();
