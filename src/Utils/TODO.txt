@@ -1,7 +1,4 @@
 En este archivo dejo por sento lo que debo corregir:
-. contemplar caso de empate en el tateti
-. contemplar caso de que empiece primero la máquina
-. si gano "2 veces" tira 2 veces la interfaz de repetir juego
-. si gano puede la maquina jugar de nuevo y puedo perder -> 2 veces la interfaz
-. boton para volver atrás en la 2da interfaz
+. se podrá hacer algo para simplificar los botones y no tener que ejecutar las funciones de éstos boton x boton?
+
 . comenzar con el buscaminas

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Frontend;
+import Utils.Utils;
 
 /**
  *
@@ -23,7 +24,7 @@ public class PrimerPantalla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnTateti = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -56,15 +57,15 @@ public class PrimerPantalla extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(2, 2));
 
-        jButton3.setText("TA TE TI");
-        jButton3.setFocusable(false);
-        jButton3.setPreferredSize(new java.awt.Dimension(75, 200));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnTateti.setText("TA TE TI");
+        btnTateti.setFocusable(false);
+        btnTateti.setPreferredSize(new java.awt.Dimension(75, 200));
+        btnTateti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnTatetiActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3);
+        jPanel2.add(btnTateti);
 
         jButton1.setText("BUSCAMINAS");
         jButton1.setFocusable(false);
@@ -107,22 +108,20 @@ public class PrimerPantalla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PantallaJuegoTateti pjt = new PantallaJuegoTateti();
-        pjt.setVisible(true);
-        pjt.setLocationRelativeTo(null);
+    private void btnTatetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTatetiActionPerformed
+        Utils.crearPrimerTurno();
         this.dispose();
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnTatetiActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTateti;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

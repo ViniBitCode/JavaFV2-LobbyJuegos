@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package Frontend.TaTeTi;
 
-import static Utils.Utils.crearPantallaFinJuego;
+import Utils.Utils;
 import java.awt.Color;
 import java.util.Random;
 import javax.swing.JButton;
@@ -16,10 +16,13 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
     private int contTurnos = 0;
     private boolean partidaGanada = false;
     private boolean partidaEmpatada = false;
+    
+    // Esta variable es modificada desde la anterior pantalla
+    private int turno;
 
-    public PantallaJuegoTateti() {
+    public PantallaJuegoTateti(int turno) {
+        this.turno = turno;
         initComponents();
-        iniciarVariables();
         iniciarJuego();
     }
 
@@ -39,10 +42,10 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         btn22 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 750));
 
         jPanel1.setLayout(new java.awt.GridLayout(3, 3));
 
+        btn00.setPreferredSize(new java.awt.Dimension(72, 50));
         btn00.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn00ActionPerformed(evt);
@@ -114,13 +117,13 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iniciarVariables() {
+    private void iniciarJuego() {
         buttons[0] = btn00;
         buttons[1] = btn01;
         buttons[2] = btn02;
@@ -130,19 +133,14 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         buttons[6] = btn20;
         buttons[7] = btn21;
         buttons[8] = btn22;
-    }
-
-    private void iniciarJuego() {
-        boolean finDeJuego = false;
-        int primerTurno = r.nextInt(10) + 1;
-        if (primerTurno % 2 == 0) {
-            // Empieza la maquina
-
-        } else {
-            // Empieza la persona
-
+        
+        if(turno == 1) { // Comienza la maquina
+            maquinaJuega();
+            contTurnos++;
         }
     }
+        
+    
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
         buttons[0].setEnabled(false);
@@ -210,7 +208,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
 
     }
 
-    // Busca un boton libre al cula ponerle la "O"
+    // Busca un boton libre al cual ponerle la "O"
     private void maquinaJuega() {
         boolean flag = false;
         do {
@@ -229,7 +227,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
                 button.setBackground(Color.yellow);
             }
             partidaEmpatada = true;
-            crearPantallaFinJuego(this);
+            Utils.crearPantallaFinJuego(this);
         }
     }
 
@@ -259,7 +257,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
             partidaGanada = true;
             desactivarBotones();
 
-            crearPantallaFinJuego(this);
+            Utils.crearPantallaFinJuego(this);
         }
     }
 

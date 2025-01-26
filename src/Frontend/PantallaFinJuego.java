@@ -4,12 +4,9 @@
  */
 package Frontend;
 
+import Utils.Utils;
 import javax.swing.JFrame;
 
-/**
- *
- * @author facun
- */
 public class PantallaFinJuego extends javax.swing.JFrame {
 
     int opcJuego;
@@ -99,15 +96,15 @@ public class PantallaFinJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        
+        frameHeredado.dispose();
+        this.dispose();
+        Utils.crearPrimerPantalla();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRepeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepeatActionPerformed
         switch (opcJuego) {
             case 1:
-                PantallaJuegoTateti pjt = new PantallaJuegoTateti();
-                pjt.setVisible(true);
-                pjt.setLocationRelativeTo(null);
+                Utils.crearPrimerTurno();
                 break;
         }
         this.dispose();
