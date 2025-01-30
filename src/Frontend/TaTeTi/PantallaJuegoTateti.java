@@ -6,8 +6,10 @@ package Frontend.TaTeTi;
 
 import Utils.Utils;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.Random;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class PantallaJuegoTateti extends javax.swing.JFrame {
 
@@ -45,6 +47,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout(3, 3));
 
+        btn00.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn00.setPreferredSize(new java.awt.Dimension(72, 50));
         btn00.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +56,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn00);
 
+        btn01.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn01ActionPerformed(evt);
@@ -60,6 +64,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn01);
 
+        btn02.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn02ActionPerformed(evt);
@@ -67,6 +72,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn02);
 
+        btn10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn10ActionPerformed(evt);
@@ -74,6 +80,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn10);
 
+        btn11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn11ActionPerformed(evt);
@@ -81,6 +88,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn11);
 
+        btn12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn12ActionPerformed(evt);
@@ -88,6 +96,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn12);
 
+        btn20.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn20ActionPerformed(evt);
@@ -95,6 +104,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn20);
 
+        btn21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn21ActionPerformed(evt);
@@ -102,6 +112,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         });
         jPanel1.add(btn21);
 
+        btn22.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn22ActionPerformed(evt);
@@ -190,7 +201,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
 
     private void ponerIconoSegunTurno(JButton btn) {
         contTurnos++;
-
+        
         btn.setText("X");
         // Primero se verifica si la persona gana la partida
         verificarVictoria("X", Color.green);

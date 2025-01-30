@@ -25,7 +25,7 @@ public class PrimerPantalla extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         btnTateti = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnBuscaminas = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -67,10 +67,15 @@ public class PrimerPantalla extends javax.swing.JFrame {
         });
         jPanel2.add(btnTateti);
 
-        jButton1.setText("BUSCAMINAS");
-        jButton1.setFocusable(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(75, 200));
-        jPanel2.add(jButton1);
+        btnBuscaminas.setText("BUSCAMINAS");
+        btnBuscaminas.setFocusable(false);
+        btnBuscaminas.setPreferredSize(new java.awt.Dimension(75, 200));
+        btnBuscaminas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaminasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscaminas);
 
         jButton2.setText("AHORCADO");
         jButton2.setFocusable(false);
@@ -118,9 +123,14 @@ public class PrimerPantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnBuscaminasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaminasActionPerformed
+        Utils.crearDificultad();
+        this.dispose();
+    }//GEN-LAST:event_btnBuscaminasActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscaminas;
     private javax.swing.JButton btnTateti;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

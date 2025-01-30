@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Utils;
 
+import Frontend.Buscaminas.PantallaDificultad;
+import Frontend.Buscaminas.PantallaJuegoBuscaminas;
 import Frontend.PantallaFinJuego;
 import Frontend.TaTeTi.PantallaJuegoTateti;
 import Frontend.PrimerPantalla;
@@ -34,6 +33,18 @@ public class Utils {
         PantallaPrimerTurno ppt = new PantallaPrimerTurno();
         ppt.setVisible(true);
         ppt.setLocationRelativeTo(null);
+    }
+    
+    public static void crearDificultad() {
+        PantallaDificultad pd = new PantallaDificultad();
+        pd.setVisible(true);
+        pd.setLocationRelativeTo(null);
+    }
+    
+    public static void crearPantallaJuegoBuscaminas(int height, int width, int cantMinas){
+        PantallaJuegoBuscaminas pjb = new PantallaJuegoBuscaminas(height, width, cantMinas);
+        pjb.setVisible(true);
+        pjb.setLocationRelativeTo(null);
     }
     
 }
