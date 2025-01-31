@@ -35,6 +35,11 @@ public class PantallaDificultad extends javax.swing.JFrame {
 
         btnHard.setText("DIFICIL");
         btnHard.setFocusable(false);
+        btnHard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHardActionPerformed(evt);
+            }
+        });
 
         btnEasy.setText("FACIL");
         btnEasy.setFocusable(false);
@@ -46,6 +51,11 @@ public class PantallaDificultad extends javax.swing.JFrame {
 
         btnMedium.setText("MEDIO");
         btnMedium.setFocusable(false);
+        btnMedium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMediumActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Custom:");
 
@@ -134,10 +144,16 @@ public class PantallaDificultad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEasyActionPerformed
-        Utils.crearPantallaJuegoBuscaminas(10, 10, 10);
-        
-        
+        Utils.crearPantallaJuegoBuscaminas(10, 10, 15);
     }//GEN-LAST:event_btnEasyActionPerformed
+
+    private void btnMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediumActionPerformed
+        Utils.crearPantallaJuegoBuscaminas(15, 15, 30);
+    }//GEN-LAST:event_btnMediumActionPerformed
+
+    private void btnHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHardActionPerformed
+        Utils.crearPantallaJuegoBuscaminas(20, 20, 50);
+    }//GEN-LAST:event_btnHardActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEasy;

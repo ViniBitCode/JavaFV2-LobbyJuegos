@@ -20,12 +20,13 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
 
     public PantallaJuegoBuscaminas(int heightTablero, int widthTablero, int cantMinas) {
         initComponents();
+        
         this.heightTablero = heightTablero;
         this.widthTablero = widthTablero;
         this.cantMinas = cantMinas;
 
         iniciarTablero();
-
+        this.setSize(widthTablero * 50, heightTablero * 50);
     }
 
     private void iniciarTablero() {
@@ -111,9 +112,20 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
                 } catch (Exception e) {
                     if (cantMinasAlrededor != 0) {
                         int contAux = cantMinasAlrededor;
-                        panelBody[i][j].add(new JLabel(Integer.toString(contAux)));
+                        JLabel label = new JLabel(Integer.toString(contAux));
+                        if (label.getText().equals("1")) {
+                            label.setForeground(Color.blue);
+                        }
+                        if (label.getText().equals("2")) {
+                            label.setForeground(Color.GREEN);
+                        }
+                        if (label.getText().equals("3")) {
+                            label.setForeground(Color.red);
+                        }
+                        panelBody[i][j].add(label);
+
                         System.out.println("Cantidad de minas detectadas para la casilla [" + i + "][" + j + "]: " + cantMinasAlrededor);
-                        
+
                     }
                 }
                 cantMinasAlrededor = 0;
@@ -123,18 +135,15 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
     }
 
     private void deteccionDeMina(int i, int j) {
-
         try {
-            // Esto detecta si está vacío, no si hay una X
             lblMinaAlrededor = (JLabel) panelBody[i][j].getComponent(0);
-
             if (lblMinaAlrededor.getText().equals("X")) {
                 cantMinasAlrededor++;
             }
-
         } catch (Exception e) {
             // poner comentario
-        }
+        } 
+        
     }
 
     private void setearBotones() {

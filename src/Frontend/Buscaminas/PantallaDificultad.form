@@ -121,6 +121,9 @@
         <Property name="text" type="java.lang.String" value="DIFICIL"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHardActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEasy">
       <Properties>
@@ -136,6 +139,9 @@
         <Property name="text" type="java.lang.String" value="MEDIO"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMediumActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
