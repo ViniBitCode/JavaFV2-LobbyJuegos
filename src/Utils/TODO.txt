@@ -1,4 +1,4 @@
 En este archivo dejo por sento lo que debo corregir:
 . se podrá hacer algo para simplificar los botones y no tener que ejecutar las funciones de éstos boton x boton?
+. cambiar la deteccion de minas por como lo dijo el paida
 
-. comenzar con el buscaminas

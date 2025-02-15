@@ -20,7 +20,7 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
 
     public PantallaJuegoBuscaminas(int heightTablero, int widthTablero, int cantMinas) {
         initComponents();
-        
+
         this.heightTablero = heightTablero;
         this.widthTablero = widthTablero;
         this.cantMinas = cantMinas;
@@ -60,90 +60,67 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
     }
 
     private void setearNumeros() {
-        int xAux = 0, yAux = 0;
+//        int xAux = 0, yAux = 0;
         for (int i = 0; i < heightTablero; i++) {
             for (int j = 0; j < widthTablero; j++) {
-                xAux = i;
-                yAux = j;
-                xAux--;
-                yAux--;
-                deteccionDeMina(xAux, yAux); // ARR-IZQ
-
-                xAux = i;
-                yAux = j;
-                xAux--;
-                deteccionDeMina(xAux, yAux); // ARR
-
-                xAux = i;
-                yAux = j;
-                xAux--;
-                yAux++;
-                deteccionDeMina(xAux, yAux); // ARR-DER
-
-                xAux = i;
-                yAux = j;
-                yAux--;
-                deteccionDeMina(xAux, yAux); // CEN-IZQ
-
-                xAux = i;
-                yAux = j;
-                yAux++;
-                deteccionDeMina(xAux, yAux); // CEN-DER
-
-                xAux = i;
-                yAux = j;
-                xAux++;
-                yAux--;
-                deteccionDeMina(xAux, yAux); // ABJ-IZQ
-
-                xAux = i;
-                yAux = j;
-                xAux++;
-                deteccionDeMina(xAux, yAux); // ABJ
-
-                xAux = i;
-                yAux = j;
-                xAux++;
-                yAux++;
-                deteccionDeMina(xAux, yAux); // ABJ-DER
-
                 try {
-                    panelBody[i][j].getComponent(0);
-                } catch (Exception e) {
-                    if (cantMinasAlrededor != 0) {
-                        int contAux = cantMinasAlrededor;
-                        JLabel label = new JLabel(Integer.toString(contAux));
-                        if (label.getText().equals("1")) {
-                            label.setForeground(Color.blue);
+                    lblMinaAlrededor = (JLabel) panelBody[i][j].getComponent(0);
+                    if (lblMinaAlrededor.getText().equals("X")) {
+                        for (int yAux = -1; yAux <= 1; yAux++) {
+                            for (int xAux = -1; xAux <= 1; xAux++) {
+                                if (yAux == 0 && xAux == 0) {
+                                    continue;
+                                }
+                                if (xAux + i < 0 || yAux + j < 0) {
+                                    continue;
+                                }
+                                sumarNumeroCasilla(xAux + i, yAux + j);
+                            }
                         }
-                        if (label.getText().equals("2")) {
-                            label.setForeground(Color.GREEN);
-                        }
-                        if (label.getText().equals("3")) {
-                            label.setForeground(Color.red);
-                        }
-                        panelBody[i][j].add(label);
-
-                        System.out.println("Cantidad de minas detectadas para la casilla [" + i + "][" + j + "]: " + cantMinasAlrededor);
-
                     }
+                } catch (Exception e) {
+                    // System.out.println("Casilla fuera del mapa: [" + i + "][" + j + "]");
+                    // Este error lo tira siempre. Tengo que ver que poner acá para manejarlo bien
                 }
-                cantMinasAlrededor = 0;
             }
-
         }
     }
 
-    private void deteccionDeMina(int i, int j) {
+    private void sumarNumeroCasilla(int xAux, int yAux) {
         try {
-            lblMinaAlrededor = (JLabel) panelBody[i][j].getComponent(0);
-            if (lblMinaAlrededor.getText().equals("X")) {
-                cantMinasAlrededor++;
+            JLabel lblPrueba = (JLabel) panelBody[xAux][yAux].getComponent(0);      // Agarrar lbl de la casilla
+            if (!lblPrueba.getText().equals("X")) {                            // ver que no haya una mina antes
+                int numMinas = Integer.valueOf(lblPrueba.getText());                // pasarlo a int
+                lblPrueba.setText(String.valueOf(++numMinas));                    // pasar a string y sumarle++
+                Color color = switch (lblPrueba.getText()) {
+                    case "2" ->
+                        Color.GREEN;
+                    case "3" ->
+                        Color.RED;
+                    case "4" ->
+                        Color.CYAN;
+                    case "5" ->
+                        Color.MAGENTA;
+                    case "6" ->
+                        Color.YELLOW;
+                    case "7" ->
+                        Color.ORANGE;
+                    case "8" ->
+                        Color.DARK_GRAY;
+                    default ->
+                        lblPrueba.getForeground();
+                };
+
+                lblPrueba.setForeground(color);
+
+                panelBody[xAux][yAux].add(lblPrueba);
             }
         } catch (Exception e) {
-            // poner comentario
-        } 
-        
+            JLabel lbl = new JLabel();
+            lbl.setText("1");
+            lbl.setForeground(Color.blue);
+            panelBody[xAux][yAux].add(lbl);
+        }
     }
 
     private void setearBotones() {
