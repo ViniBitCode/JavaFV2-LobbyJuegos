@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Frontend.Buscaminas;
+
 import Utils.Utils;
 
 public class PantallaDificultad extends javax.swing.JFrame {
@@ -145,16 +146,19 @@ public class PantallaDificultad extends javax.swing.JFrame {
 
     private void btnEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEasyActionPerformed
         Utils.crearPantallaJuegoBuscaminas(10, 10, 15);
+        this.dispose();
     }//GEN-LAST:event_btnEasyActionPerformed
 
     private void btnMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediumActionPerformed
         Utils.crearPantallaJuegoBuscaminas(15, 15, 30);
+        this.dispose();
     }//GEN-LAST:event_btnMediumActionPerformed
 
     private void btnHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHardActionPerformed
         Utils.crearPantallaJuegoBuscaminas(20, 20, 50);
+        this.dispose();
     }//GEN-LAST:event_btnHardActionPerformed
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEasy;
     private javax.swing.JButton btnHard;

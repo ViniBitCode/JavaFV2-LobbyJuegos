@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 
 public class Utils {
 
-    public static void crearPantallaFinJuego(JFrame frameHeredado) {
-        PantallaFinJuego pfj = new PantallaFinJuego(1, frameHeredado);
+    public static void crearPantallaFinJuego(JFrame frameHeredado, int opc) {
+        PantallaFinJuego pfj = new PantallaFinJuego(opc, frameHeredado);
         pfj.setVisible(true);
         pfj.setLocationRelativeTo(null);
     }

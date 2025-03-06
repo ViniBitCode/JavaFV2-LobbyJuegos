@@ -18,7 +18,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
     private int contTurnos = 0;
     private boolean partidaGanada = false;
     private boolean partidaEmpatada = false;
-    
+
     // Esta variable es modificada desde la anterior pantalla
     private int turno;
 
@@ -144,14 +144,13 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
         buttons[6] = btn20;
         buttons[7] = btn21;
         buttons[8] = btn22;
-        
-        if(turno == 1) { // Comienza la maquina
+
+        if (turno == 1) { // Comienza la maquina
             maquinaJuega();
             contTurnos++;
         }
     }
-        
-    
+
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
         buttons[0].setEnabled(false);
@@ -201,7 +200,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
 
     private void ponerIconoSegunTurno(JButton btn) {
         contTurnos++;
-        
+
         btn.setText("X");
         // Primero se verifica si la persona gana la partida
         verificarVictoria("X", Color.green);
@@ -238,7 +237,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
                 button.setBackground(Color.yellow);
             }
             partidaEmpatada = true;
-            Utils.crearPantallaFinJuego(this);
+            Utils.crearPantallaFinJuego(this, 1);
         }
     }
 
@@ -268,7 +267,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
             partidaGanada = true;
             desactivarBotones();
 
-            Utils.crearPantallaFinJuego(this);
+            Utils.crearPantallaFinJuego(this, 1);
         }
     }
 

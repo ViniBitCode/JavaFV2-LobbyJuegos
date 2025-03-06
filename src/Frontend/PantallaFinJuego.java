@@ -106,6 +106,9 @@ public class PantallaFinJuego extends javax.swing.JFrame {
             case 1:
                 Utils.crearPrimerTurno();
                 break;
+            case 2: 
+                Utils.crearDificultad();
+                break;
         }
         this.dispose();
         frameHeredado.dispose();
