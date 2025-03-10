@@ -7,10 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -21,6 +19,8 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
     private final int widthTablero;
     private final Random r = new Random();
     private int cantMinas;
+    private int cantCasiilasSinBoton = 0;
+    private int condicionVictoria;
 
     JPanel[][] panelBody;
     JLabel lblMinaAlrededor;
@@ -30,17 +30,14 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
         this.heightTablero = heightTablero;
         this.widthTablero = widthTablero;
         this.cantMinas = cantMinas;
-        iniciarTablero();
+        condicionVictoria = widthTablero * heightTablero - cantMinas;
+        System.out.println(cantMinas);
         this.setSize(widthTablero * 50, heightTablero * 50);
+        iniciarTablero();
+
     }
 
     private void iniciarTablero() {
-        setearTableroYMinas();
-        setearNumeros();
-
-    }
-
-    private void setearTableroYMinas() {
         // Dividir tablero en JPanel - Poner botones por como 2da carta
         this.setLayout(new GridLayout(heightTablero, widthTablero, 5, 5));
         panelBody = new JPanel[heightTablero][widthTablero];
@@ -65,6 +62,7 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
                 cantMinas--;
             }
         } while (cantMinas > 0);
+
         // Rellena los espacios vacíos con un JLabel vacío
         for (int i = 0; i < heightTablero; i++) {
             for (int j = 0; j < widthTablero; j++) {
@@ -76,30 +74,7 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
                 }
             }
         }
-    }
 
-    private void agregarBoton(int i, int j) {
-        JButton button = new JButton();
-        button.setFocusable(false);
-        button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)) {
-                    JLabel lblNumero = (JLabel) panelBody[i][j].getComponent(1);
-                    CardLayout layout = (CardLayout) panelBody[i][j].getLayout();
-                    layout.show(panelBody[i][j], "lblCasillaText");
-                    limpiarCasillasVacias(i, j);
-                    checkWinOrLose(i, j);
-                } else if (SwingUtilities.isRightMouseButton(e)) {
-                    button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Buscaminas/redflag.png")));
-                }
-            }
-        });
-        panelBody[i][j].add(button, "button"); // Agregar con identificador
-        ((CardLayout) panelBody[i][j].getLayout()).show(panelBody[i][j], "button"); // Mostrar primero el botón
-    }
-
-    private void setearNumeros() {
         // Setea los números sumando al rededor de las minas
         for (int i = 0; i < heightTablero; i++) {
             for (int j = 0; j < widthTablero; j++) {
@@ -123,14 +98,41 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
         }
     }
 
-    private void sumarNumeroCasilla(int xAux, int yAux) {
+    private void agregarBoton(int i, int j) {
+        JButton button = new JButton();
+        button.setFocusable(false);
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    JLabel lblNumero = (JLabel) panelBody[i][j].getComponent(1);
+                    CardLayout layout = (CardLayout) panelBody[i][j].getLayout();
+                    layout.show(panelBody[i][j], "lblCasillaText");
+                    lblNumero.setName("lblRepetido");
+                    cantCasiilasSinBoton++;
+                    System.out.println("Ahora hay [" + cantCasiilasSinBoton + "] casillas sin boton!");
+                    // Funcion que comienza la recursividad para limpiar casillas vacias
+                    limpiarCasillasVacias(i, j, true);
+                    // Función que chequea cuando pierde o gana
+                    checkWinOrLose(i, j);
 
+                } else if (SwingUtilities.isRightMouseButton(e)) {
+                    button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Buscaminas/redflag.png")));
+                }
+            }
+        });
+        panelBody[i][j].add(button, "button"); // Agregar con identificador
+        ((CardLayout) panelBody[i][j].getLayout()).show(panelBody[i][j], "button"); // Mostrar primero el botón
+    }
+
+    private void sumarNumeroCasilla(int xAux, int yAux) {
         JLabel lblNumero = (JLabel) panelBody[xAux][yAux].getComponent(1);      // Agarrar lbl de la casilla
         if (!lblNumero.getText().equals("X")) {                            // ver que no haya una mina antes
             if (lblNumero.getText().equals("")) {
                 lblNumero.setText("1");
                 lblNumero.setForeground(Color.blue);
                 lblNumero.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNumero.setName("lblNumero");
             } else {
                 int numMinas = Integer.valueOf(lblNumero.getText());                // pasarlo a int
                 lblNumero.setText(String.valueOf(++numMinas));                    // pasar a string y sumarle++
@@ -181,33 +183,58 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
         JLabel lblVacio = (JLabel) panelBody[i][j].getComponent(1);
         if (lblVacio.getText().equals("X")) {
             panelBody[i][j].setBackground(Color.red);
+            pintarCasillasMinas(Color.red);
             Utils.crearPantallaFinJuego(this, 2);
+        }
+        if (cantCasiilasSinBoton == condicionVictoria) {
+            System.out.println("hola");
+            pintarCasillasMinas(Color.green);
+            Utils.crearPantallaFinJuego(this, 2);
+        }
+
+    }
+
+    private void pintarCasillasMinas(Color color) {
+        for (int width = 0; width < widthTablero; width++) {
+            for (int height = 0; height < heightTablero; height++) {
+                JLabel lblVacio = (JLabel) panelBody[width][height].getComponent(1);
+                if (lblVacio.getText().equals("X")) {
+                    panelBody[width][height].setBackground(color);
+                    CardLayout layout = (CardLayout) panelBody[width][height].getLayout();
+                    layout.show(panelBody[width][height], "lblCasillaText");
+                }
+            }
         }
     }
 
-    private void limpiarCasillasVacias(int i, int j) {
+    private void limpiarCasillasVacias(int i, int j, boolean restarNumero) {
         JLabel lblVacio = (JLabel) panelBody[i][j].getComponent(1);
         // Esto se va a ejecutar la que tocaste esta vacia
         if (lblVacio.getText().equals("")) {
+            if (restarNumero == false) {
+                cantCasiilasSinBoton++;
+                System.out.println("Ahora hay [" + cantCasiilasSinBoton + "] casillas sin boton!");
+            }
             lblVacio.setText(" ");
             for (int yAux = -1; yAux <= 1; yAux++) {
                 for (int xAux = -1; xAux <= 1; xAux++) {
                     try {
-                        lblVacio = (JLabel) panelBody[xAux + i][yAux + j].getComponent(1); // Esta me esta tirando un error medio chango -> se detendrá la busqueda?
-                        if (!lblVacio.getText().equals("X") || lblVacio.getText().equals("")) {
+                        lblVacio = (JLabel) panelBody[xAux + i][yAux + j].getComponent(1);
+                        if (lblVacio.getText().equals("") || !lblVacio.getName().equals("lblRepetido")) {
                             CardLayout layout = (CardLayout) panelBody[xAux + i][yAux + j].getLayout();
                             layout.show(panelBody[xAux + i][yAux + j], "lblCasillaText");
-                            limpiarCasillasVacias(xAux + i, yAux + j);
-                        } else {
-                            System.out.println("Termina busqueda por numero");
+                            limpiarCasillasVacias(xAux + i, yAux + j, false);
                         }
                     } catch (Exception e) {
+                        // Aca salto a la siguiente ejecucón del for cuando se va fuera del mapa
                         continue;
                     }
                 }
             }
-        } else {
-            // System.out.println("Texto en casilla [" + i + "][" + j + "] - " + lblVacio.getText());
+        } else if (!lblVacio.getText().equals("") && !lblVacio.getText().equals(" ") && !lblVacio.getText().equals("X") && lblVacio.getName().equals("lblNumero") && restarNumero == false) {
+            cantCasiilasSinBoton++;
+            System.out.println("Ahora hay [" + cantCasiilasSinBoton + "] casillas sin boton!");
+            lblVacio.setName("lblRepetido");
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
