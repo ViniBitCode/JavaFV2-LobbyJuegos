@@ -5,9 +5,9 @@
 package Frontend.TaTeTi;
 import Utils.Utils;
 
-public class PantallaPrimerTurno extends javax.swing.JFrame {
+public class PrimerPantallaTateti extends javax.swing.JFrame {
 
-    public PantallaPrimerTurno() {
+    public PrimerPantallaTateti() {
         initComponents();
     }
     

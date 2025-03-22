@@ -1,12 +1,14 @@
 
 package Utils;
 
-import Frontend.Buscaminas.PantallaDificultad;
-import Frontend.Buscaminas.PantallaJuegoBuscaminas;
-import Frontend.PantallaFinJuego;
-import Frontend.TaTeTi.PantallaJuegoTateti;
-import Frontend.PrimerPantalla;
-import Frontend.TaTeTi.PantallaPrimerTurno;
+import Frontend.Ahorcado.PantallaAhorcado;
+import Frontend.Ahorcado.PrimerPantallaAhorcado;
+import Frontend.Buscaminas.PrimerPantallaBuscaminas;
+import Frontend.Buscaminas.PantallaBuscaminas;
+import PantallasReutilizables.PantallaFinJuego;
+import Frontend.TaTeTi.PantallaTateti;
+import PantallasReutilizables.PrimerPantalla;
+import Frontend.TaTeTi.PrimerPantallaTateti;
 import javax.swing.JFrame;
 
 public class Utils {
@@ -24,27 +26,39 @@ public class Utils {
     }
 
     public static void crearJuegoTateti(int opc) {
-        PantallaJuegoTateti pjt = new PantallaJuegoTateti(opc);
+        PantallaTateti pjt = new PantallaTateti(opc);
         pjt.setVisible(true);
         pjt.setLocationRelativeTo(null);
     }
     
-    public static void crearPrimerTurno() {
-        PantallaPrimerTurno ppt = new PantallaPrimerTurno();
+    public static void crearPrimerTurnoTateti() {
+        PrimerPantallaTateti ppt = new PrimerPantallaTateti();
         ppt.setVisible(true);
         ppt.setLocationRelativeTo(null);
     }
     
-    public static void crearDificultad() {
-        PantallaDificultad pd = new PantallaDificultad();
+    public static void crearDificultadBuscaminas() {
+        PrimerPantallaBuscaminas pd = new PrimerPantallaBuscaminas();
         pd.setVisible(true);
         pd.setLocationRelativeTo(null);
     }
     
     public static void crearPantallaJuegoBuscaminas(int height, int width, int cantMinas){
-        PantallaJuegoBuscaminas pjb = new PantallaJuegoBuscaminas(height, width, cantMinas);
+        PantallaBuscaminas pjb = new PantallaBuscaminas(height, width, cantMinas);
         pjb.setVisible(true);
         pjb.setLocationRelativeTo(null);
+    }
+
+    public static void crearIngresarPalabraAhorcado() {
+        PrimerPantallaAhorcado ppa = new PrimerPantallaAhorcado();
+        ppa.setVisible(true);
+        ppa.setLocationRelativeTo(null);
+    }
+    
+    public static void crearPantallaAhorcado(String palabra) {
+        PantallaAhorcado pa = new PantallaAhorcado(palabra);
+        pa.setVisible(true);
+        pa.setLocationRelativeTo(null);
     }
     
 }

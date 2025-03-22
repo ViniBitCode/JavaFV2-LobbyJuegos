@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package PantallasReutilizables;
 
 import Utils.Utils;
 import javax.swing.JFrame;
@@ -11,14 +11,13 @@ public class PantallaFinJuego extends javax.swing.JFrame {
 
     int opcJuego;
     JFrame frameHeredado;
-    
+
     public PantallaFinJuego(int opcJuego, JFrame frameHeredado) {
         initComponents();
         this.opcJuego = opcJuego;
         this.frameHeredado = frameHeredado;
-        
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,10 +103,13 @@ public class PantallaFinJuego extends javax.swing.JFrame {
     private void btnRepeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepeatActionPerformed
         switch (opcJuego) {
             case 1:
-                Utils.crearPrimerTurno();
+                Utils.crearPrimerTurnoTateti();
                 break;
-            case 2: 
-                Utils.crearDificultad();
+            case 2:
+                Utils.crearDificultadBuscaminas();
+                break;
+            case 3:
+                Utils.crearIngresarPalabraAhorcado();
                 break;
         }
         this.dispose();

@@ -11,7 +11,7 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class PantallaJuegoTateti extends javax.swing.JFrame {
+public class PantallaTateti extends javax.swing.JFrame {
 
     private JButton buttons[] = new JButton[9];
     private Random r = new Random();
@@ -22,7 +22,7 @@ public class PantallaJuegoTateti extends javax.swing.JFrame {
     // Esta variable es modificada desde la anterior pantalla
     private int turno;
 
-    public PantallaJuegoTateti(int turno) {
+    public PantallaTateti(int turno) {
         this.turno = turno;
         initComponents();
         iniciarJuego();

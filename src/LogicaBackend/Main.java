@@ -4,7 +4,7 @@
  */
 package LogicaBackend;
 
-import Frontend.PrimerPantalla;
+import PantallasReutilizables.PrimerPantalla;
 
 
 public class Main {

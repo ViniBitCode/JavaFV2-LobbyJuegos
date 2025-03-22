@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
+public class PantallaBuscaminas extends javax.swing.JFrame {
 
     private final int heightTablero;
     private final int widthTablero;
@@ -25,13 +25,12 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
     JPanel[][] panelBody;
     JLabel lblMinaAlrededor;
 
-    public PantallaJuegoBuscaminas(int heightTablero, int widthTablero, int cantMinas) {
+    public PantallaBuscaminas(int heightTablero, int widthTablero, int cantMinas) {
         initComponents();
         this.heightTablero = heightTablero;
         this.widthTablero = widthTablero;
         this.cantMinas = cantMinas;
         condicionVictoria = widthTablero * heightTablero - cantMinas;
-        System.out.println(cantMinas);
         this.setSize(widthTablero * 50, heightTablero * 50);
         iniciarTablero();
 
@@ -110,7 +109,6 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
                     layout.show(panelBody[i][j], "lblCasillaText");
                     lblNumero.setName("lblRepetido");
                     cantCasiilasSinBoton++;
-                    System.out.println("Ahora hay [" + cantCasiilasSinBoton + "] casillas sin boton!");
                     // Funcion que comienza la recursividad para limpiar casillas vacias
                     limpiarCasillasVacias(i, j, true);
                     // Función que chequea cuando pierde o gana
@@ -187,7 +185,6 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
             Utils.crearPantallaFinJuego(this, 2);
         }
         if (cantCasiilasSinBoton == condicionVictoria) {
-            System.out.println("hola");
             pintarCasillasMinas(Color.green);
             Utils.crearPantallaFinJuego(this, 2);
         }
@@ -213,7 +210,6 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
         if (lblVacio.getText().equals("")) {
             if (restarNumero == false) {
                 cantCasiilasSinBoton++;
-                System.out.println("Ahora hay [" + cantCasiilasSinBoton + "] casillas sin boton!");
             }
             lblVacio.setText(" ");
             for (int yAux = -1; yAux <= 1; yAux++) {
@@ -233,7 +229,6 @@ public class PantallaJuegoBuscaminas extends javax.swing.JFrame {
             }
         } else if (!lblVacio.getText().equals("") && !lblVacio.getText().equals(" ") && !lblVacio.getText().equals("X") && lblVacio.getName().equals("lblNumero") && restarNumero == false) {
             cantCasiilasSinBoton++;
-            System.out.println("Ahora hay [" + cantCasiilasSinBoton + "] casillas sin boton!");
             lblVacio.setName("lblRepetido");
         }
     }

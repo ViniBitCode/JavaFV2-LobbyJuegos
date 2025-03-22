@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package PantallasReutilizables;
+
 import Utils.Utils;
 
 /**
@@ -11,7 +12,6 @@ import Utils.Utils;
  */
 public class PrimerPantalla extends javax.swing.JFrame {
 
-   
     public PrimerPantalla() {
         initComponents();
     }
@@ -114,17 +114,17 @@ public class PrimerPantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTatetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTatetiActionPerformed
-        Utils.crearPrimerTurno();
+        Utils.crearPrimerTurnoTateti();
         this.dispose();
-        
     }//GEN-LAST:event_btnTatetiActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Utils.crearIngresarPalabraAhorcado();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnBuscaminasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaminasActionPerformed
-        Utils.crearDificultad();
+        Utils.crearDificultadBuscaminas();
         this.dispose();
     }//GEN-LAST:event_btnBuscaminasActionPerformed
 

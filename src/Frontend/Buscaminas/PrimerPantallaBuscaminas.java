@@ -6,9 +6,9 @@ package Frontend.Buscaminas;
 
 import Utils.Utils;
 
-public class PantallaDificultad extends javax.swing.JFrame {
+public class PrimerPantallaBuscaminas extends javax.swing.JFrame {
 
-    public PantallaDificultad() {
+    public PrimerPantallaBuscaminas() {
         initComponents();
     }
 
