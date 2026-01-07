@@ -14,4 +14,4 @@ Java APP N2! - Lobby de Juegos!
 
 ### **Siguiente proyecto:**  
 💻 | Vamos a dar el siguiente paso en el roadmap yendo a la implementacion de un JPA para poder hacer mi primer login. Voy a ponerle un poco mas de magia y buscar alguna herramienta para poder hacer de JavaSwing algo mas estetico.  
-Repositorio de siguiente proyecto: [JavaFV2-FullStack](https://github.com/ViniBitCode/JavaFV3-FullStack)
+Repositorio de siguiente proyecto: [JavaFV3-FullStack](https://github.com/ViniBitCode/JavaFV3-FullStack)
